@@ -36,7 +36,6 @@ else
 fi
 echo
 
-echo
 echo -e "${GREEN}[+] Deleting old pif"
 rm -f "$Target" > /dev/null 
 echo
@@ -45,7 +44,6 @@ echo -e "${GREEN}[+] Check if the miui eu inject module is present"
 pm disable eu.xiaomi.module.inject > /dev/null 2>&1 && echo -e "${RED}The miui eu inject module is disabled now. YOU NEED TO REBOOT OR YOU WON'T BE ABLE TO PASS DEVICE INTEGRITY!." || true
 echo
 
-echo
 echo -e "${GREEN}[+] Downloading the new pif"
 /system/bin/curl -L http://tinyurl.com/autojson -o $Target > /dev/null 2>&1 || /system/bin/curl -L http://tinyurl.com/autojson -o $Target
 if [ "$Author" == "osm0sis" ]; then

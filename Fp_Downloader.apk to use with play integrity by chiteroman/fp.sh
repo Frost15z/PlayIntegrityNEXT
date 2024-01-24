@@ -29,7 +29,7 @@ elif [ "$Author" == "chiteroman" ]; then
     Target="/data/adb/pif.json"
 elif [ "$Author" == "osm0sis" ]; then
     Target="/data/adb/modules/playintegrityfix/custom.pif.json"
-    echo "    Detected osm0sis module. Will use $Target"
+    echo "    Detected osm0sis module. Will use $Target lol"
 else
     echo "    PIF module found but not recognized! Will use /data/adb/pif.json"
     Target="/data/adb/pif.json"

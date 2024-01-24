@@ -49,7 +49,7 @@ echo
 echo -e "${GREEN}[+] Downloading the new pif"
 /system/bin/curl -L http://tinyurl.com/autojson -o $Target > /dev/null 2>&1 || /system/bin/curl -L http://tinyurl.com/autojson -o $Target
 if [ "$Author" == "osm0sis" ]; then
-    sh /data/adb/modules/playintegrityfix/migrate.sh
+    sh /data/adb/modules/playintegrityfix/migrate.sh > /dev/null 2>&1
 fi
 echo
 

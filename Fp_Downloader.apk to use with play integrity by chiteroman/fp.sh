@@ -62,6 +62,8 @@ echo
 if [ -e $Target ]; then 
     echo -e "${GREEN}[+] Pif installed succesfully"
     echo
+    echo -e "${GREEN}[+] File creation Time: "stat -t -c "%z" $Target" "
+    echo
     cat  $Target
 else 
     echo -e "${GREEN}   +] Pif not present, something went wrong."

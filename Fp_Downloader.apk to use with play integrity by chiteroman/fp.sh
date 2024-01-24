@@ -30,6 +30,9 @@ echo
 
 echo -e "${GREEN}[+] Looking for installed PIF module"
 Author=$(cat /data/adb/modules/playintegrityfix/module.prop | grep "author=" | sed -r 's/author=([^ ]+) ?.*/\1/gi')
+
+echo
+
 if [ -z "$Author" ]; then
     echo "    Can't detect an installed PIF module! Will use /data/adb/pif.json"
     Target="/data/adb/pif.json"
@@ -44,9 +47,13 @@ else
     Target="/data/adb/pif.json"
 fi
 
+echo
 
 echo -e "${GREEN}[+] Downloading the pif.json"
 /system/bin/curl -L http://tinyurl.com/autojson -o $Target > /dev/null 2>&1 || /system/bin/curl -L http://tinyurl.com/autojson -o $Target
+if [ "$Author" == "osm0sis" ]; then
+    sh /data/adb/modules/playintegrityfix/migrate.sh
+fi
 echo
 
 echo -e "${GREEN}[+] Killing com.google.android.gms"

@@ -22,17 +22,17 @@ echo -e "${GREEN}[+] Looking for installed PIF module"
 Author=$(cat /data/adb/modules/playintegrityfix/module.prop | grep "author=" | sed -r 's/author=([^ ]+) ?.*/\1/gi')
 echo
 if [ -z "$Author" ]; then
-    echo "    Can't detect an installed PIF module! Will use /data/adb/pif.json"
     Target="/data/adb/pif.json"
+    echo "    Can't detect an installed PIF module! Will use $Targetn"
 elif [ "$Author" == "chiteroman" ]; then
-    echo "    Detected chiteroman module. Will use /data/adb/pif.json"
     Target="/data/adb/pif.json"
+    echo "    Detected chiteroman module. Will use $Target"
 elif [ "$Author" == "osm0sis" ]; then
     Target="/data/adb/modules/playintegrityfix/custom.pif.json"
-    echo "    Detected osm0sis module. Will use $Target lol"
+    echo "    Detected osm0sis module. Will use $Target"
 else
-    echo "    PIF module found but not recognized! Will use /data/adb/pif.json"
     Target="/data/adb/pif.json"
+    echo "    PIF module found but not recognized! Will use $Target"
 fi
 echo
 

@@ -37,7 +37,7 @@ fi
 echo
 
 echo
-echo -e "${GREEN}[+] Deleting old pif.json"
+echo -e "${GREEN}[+] Deleting old pif"
 rm -f "$Target" > /dev/null 
 echo
 
@@ -45,11 +45,8 @@ echo -e "${GREEN}[+] Check if the miui eu inject module is present"
 pm disable eu.xiaomi.module.inject > /dev/null 2>&1 && echo -e "${RED}The miui eu inject module is disabled now. YOU NEED TO REBOOT OR YOU WON'T BE ABLE TO PASS DEVICE INTEGRITY!." || true
 echo
 
-
-
-
 echo
-echo -e "${GREEN}[+] Downloading the pif.json"
+echo -e "${GREEN}[+] Downloading the new pif"
 /system/bin/curl -L http://tinyurl.com/autojson -o $Target > /dev/null 2>&1 || /system/bin/curl -L http://tinyurl.com/autojson -o $Target
 if [ "$Author" == "osm0sis" ]; then
     sh /data/adb/modules/playintegrityfix/migrate.sh
@@ -65,9 +62,9 @@ pkill -f com.google.android.gms.unstable > /dev/null
 echo
 
 if [ -e $Target ]; then 
-    echo -e "${GREEN}[+] Pif.json downloaded succesfully"
+    echo -e "${GREEN}[+] Pif installed succesfully"
 else 
-    echo -e "${GREEN}   +] Pif.json not present, something went wrong."
+    echo -e "${GREEN}   +] Pif not present, something went wrong."
 fi
 
 rm "$0"

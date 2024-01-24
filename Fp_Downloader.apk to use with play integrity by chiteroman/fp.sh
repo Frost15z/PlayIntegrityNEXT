@@ -66,5 +66,6 @@ if [ -e $Target ]; then
 else 
     echo -e "${GREEN}   +] Pif not present, something went wrong."
 fi
+echo
 
 rm "$0"

@@ -28,8 +28,8 @@ elif [ "$Author" == "chiteroman" ]; then
     echo "    Detected chiteroman module. Will use /data/adb/pif.json"
     Target="/data/adb/pif.json"
 elif [ "$Author" == "osm0sis" ]; then
-    echo "    Detected osm0sis module. Will use /data/adb/modules/playintegrityfix/custom.pif.json"
     Target="/data/adb/modules/playintegrityfix/custom.pif.json"
+    echo "    Detected osm0sis module. Will use $Target"
 else
     echo "    PIF module found but not recognized! Will use /data/adb/pif.json"
     Target="/data/adb/pif.json"
@@ -37,7 +37,7 @@ fi
 echo
 
 echo -e "${GREEN}[+] Deleting old pif"
-rm -f "$Target" > /dev/null 
+rm -f $Target > /dev/null 
 echo
 
 echo -e "${GREEN}[+] Check if the miui eu inject module is present"

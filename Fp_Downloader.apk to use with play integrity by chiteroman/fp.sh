@@ -61,6 +61,8 @@ echo
 
 if [ -e $Target ]; then 
     echo -e "${GREEN}[+] Pif installed succesfully"
+    echo
+    cat  $Target
 else 
     echo -e "${GREEN}   +] Pif not present, something went wrong."
 fi

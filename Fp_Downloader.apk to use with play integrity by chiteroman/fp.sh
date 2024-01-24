@@ -27,8 +27,26 @@ echo -e "${GREEN}[+] Check if the miui eu inject module is present"
 pm disable eu.xiaomi.module.inject > /dev/null 2>&1 && echo -e "${RED}The miui eu inject module is disabled now. YOU NEED TO REBOOT OR YOU WON'T BE ABLE TO PASS DEVICE INTEGRITY!." || true
 echo
 
+
+echo -e "${GREEN}[+] Looking for installed PIF module"
+Author=$(cat /data/adb/modules/playintegrityfix/module.prop | grep "author=" | sed -r 's/author=([^ ]+) ?.*/\1/gi')
+if [ -z "$Author" ]; then
+    echo "    Can't detect an installed PIF module! Will use /data/adb/pif.json"
+    Target="/data/adb/pif.json"
+elif [ "$Author" == "chiteroman" ]; then
+    echo "    Detected chiteroman module. Will use /data/adb/pif.json"
+    Target="/data/adb/pif.json"
+elif [ "$Author" == "osm0sis" ]; then
+    echo "    Detected osm0sis module. Will use /data/adb/modules/playintegrityfix/custom.pif.json"
+    Target="/data/adb/modules/playintegrityfix/custom.pif.json"
+else
+    echo "    PIF module found but not recognized! Will use /data/adb/pif.json"
+    Target="/data/adb/pif.json"
+fi
+
+
 echo -e "${GREEN}[+] Downloading the pif.json"
-/system/bin/curl -L http://tinyurl.com/autojson -o /data/adb/pif.json > /dev/null 2>&1 || /system/bin/curl -L http://tinyurl.com/autojson -o /data/adb/pif.json
+/system/bin/curl -L http://tinyurl.com/autojson -o $Target > /dev/null 2>&1 || /system/bin/curl -L http://tinyurl.com/autojson -o $Target
 echo
 
 echo -e "${GREEN}[+] Killing com.google.android.gms"
@@ -39,7 +57,7 @@ echo -e "${GREEN}[+] Killing com.google.android.gms.unstable"
 pkill -f com.google.android.gms.unstable > /dev/null 
 echo
 
-if [ -e /data/adb/pif.json ]; then 
+if [ -e $Target ]; then 
     echo -e "${GREEN}[+] Pif.json downloaded succesfully"
 else 
     echo -e "${GREEN}   +] Pif.json not present, something went wrong."
